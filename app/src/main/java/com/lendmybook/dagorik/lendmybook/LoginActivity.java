@@ -1,4 +1,4 @@
-package com.lendmybook.dagorik.lendmybook;
+ package com.lendmybook.dagorik.lendmybook;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -31,9 +31,8 @@ public class LoginActivity extends AppCompatActivity {
 
         loginButton.setReadPermissions(Arrays.asList("email"));
 
-        Profile profile = Profile.getCurrentProfile();
-
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+
             @Override
             public void onSuccess(LoginResult loginResult) {
                 goMainScreen();
@@ -41,12 +40,12 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onCancel() {
-                Toast.makeText(getApplicationContext(),"Has cancelado el inicio de sesion.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Has cancelado el inicio de sesion.", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onError(FacebookException error) {
-                Log.i("MyLogError",""+ error);
+                Log.i("MyLogError", "" + error);
             }
         });
 
