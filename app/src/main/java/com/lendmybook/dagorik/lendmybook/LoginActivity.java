@@ -32,14 +32,13 @@ public class LoginActivity extends AppCompatActivity {
     private ImageView imagenPerfil;
     private String url;
     private String nameJson;
+    private String profileGrande;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        imagenPerfil = (ImageView) findViewById(R.id.imagen_perfil);
 
         callbackManager = CallbackManager.Factory.create();
 
@@ -66,18 +65,16 @@ public class LoginActivity extends AppCompatActivity {
                             Log.e("myLog", url);
                             Log.e("MylogName", nameJson);
 
+                            Profile profile = Profile.getCurrentProfile();
+                            profileGrande = profile.getProfilePictureUri(300, 300).toString();
+
 
                             SharedPreferences preferences = getSharedPreferences("sesion", getApplicationContext().MODE_PRIVATE);
                             SharedPreferences.Editor editor = preferences.edit();
                             editor.putString("img_perfil", url);
-                            editor.putString("name_face",nameJson);
+                            editor.putString("img_perfilG", profileGrande);
+                            editor.putString("name_face", nameJson);
                             editor.commit();
-
-
-//
-//                            urlPerfil = preferences.getString("img_perfil",null);
-//
-//                            Log.e("myLogPerfil", urlPerfil);
 
 
                         } catch (JSONException e) {

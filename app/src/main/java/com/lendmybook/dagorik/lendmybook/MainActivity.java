@@ -56,10 +56,10 @@ public class MainActivity extends AppCompatActivity {
             goLoginScreen();
 
             SharedPreferences preferences = getSharedPreferences("sesion", getApplicationContext().MODE_PRIVATE);
-            urlPerfil = preferences.getString("img_perfil",null);
 
-            Log.e("myLogPerfil", urlPerfil);
+            urlPerfil = preferences.getString("img_perfilG", null);
 
+//            Log.e("myLogPerfil", urlPerfil);
 
         }
 
