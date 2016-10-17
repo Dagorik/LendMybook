@@ -64,9 +64,10 @@ public class TwoFragment extends Fragment implements View.OnClickListener {
     public void showDialog(){
 
         FragmentManager fm = getFragmentManager();
-//        FragmentManager childFragmentManager = getChildFragmentManager();
+
+        FragmentManager childFragmentManager = getChildFragmentManager();
         PublicarDialogFragment dialogFragment = new PublicarDialogFragment ();
-//        dialogFragment.show(fm,"hola");
+        dialogFragment.show(childFragmentManager,"asd");
 
 
     }
