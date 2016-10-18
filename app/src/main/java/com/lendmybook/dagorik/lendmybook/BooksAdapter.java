@@ -61,8 +61,6 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> 
 
         public void bindTrack(final BookArray bookArray){
 
-//            String imganeLibro= bookArray.getListaBook().toString();
-//
 //            imgBooks.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View view) {
