@@ -1,9 +1,9 @@
 package com.lendmybook.dagorik.lendmybook.fragmentes;
 
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,18 +56,18 @@ public class TwoFragment extends Fragment implements View.OnClickListener {
 //                trans.replace(R.id.fab, floatingFragment);
 //
 //                trans.commit();
+                showDialog();
 
                 break;
         }
     }
 
-    public void showDialog(){
+    public void showDialog() {
 
-        FragmentManager fm = getFragmentManager();
 
-        FragmentManager childFragmentManager = getChildFragmentManager();
-        PublicarDialogFragment dialogFragment = new PublicarDialogFragment ();
-        dialogFragment.show(childFragmentManager,"asd");
+        FragmentManager fm = getActivity().getFragmentManager();
+        PublicarDialogFragment dialogFragment = new PublicarDialogFragment();
+        dialogFragment.show(fm, "asd");
 
 
     }
