@@ -21,6 +21,7 @@ import com.facebook.login.LoginManager;
 import com.lendmybook.dagorik.lendmybook.fragmentes.OneFragment;
 import com.lendmybook.dagorik.lendmybook.fragmentes.ThreeFragment;
 import com.lendmybook.dagorik.lendmybook.fragmentes.TwoFragment;
+import com.lendmybook.dagorik.lendmybook.models.BookArray;
 
 import org.json.JSONObject;
 
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private String urlPerfil;
+    private List<BookArray> bookArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout.setupWithViewPager(viewPager);
 
+        //Agregando datos a la lista libros
+        bookArrayList.add(new BookArray());
 
         if (AccessToken.getCurrentAccessToken() == null) {
             goLoginScreen();
