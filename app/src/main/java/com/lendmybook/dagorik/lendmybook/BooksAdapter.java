@@ -61,15 +61,15 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> 
 
         public void bindTrack(final BookArray bookArray){
 
-            String imganeLibro= bookArray.getListaBook().toString();
-
-            imgBooks.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    //Toast.makeText(contexto, "LE DISTE CLICK A ESTE LIBRO", Toast.LENGTH_SHORT).show();
-                }
-            });
+//            String imganeLibro= bookArray.getListaBook().toString();
+//
+//            imgBooks.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//
+//                    //Toast.makeText(contexto, "LE DISTE CLICK A ESTE LIBRO", Toast.LENGTH_SHORT).show();
+//                }
+//            });
 
 
         }

@@ -30,21 +30,18 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private String urlPerfil;
-    private List<BookArray> bookArrayList;
+    private List<BookArray> bookArrayList=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        toolbar = (Toolbar) findViewById(R.id.toolBar);
-        setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         setupViewPager(viewPager);
@@ -53,8 +50,6 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout.setupWithViewPager(viewPager);
 
-        //Agregando datos a la lista libros
-        bookArrayList.add(new BookArray());
 
         if (AccessToken.getCurrentAccessToken() == null) {
             goLoginScreen();
