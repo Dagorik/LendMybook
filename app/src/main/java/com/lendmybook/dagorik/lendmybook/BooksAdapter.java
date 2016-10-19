@@ -2,12 +2,14 @@ package com.lendmybook.dagorik.lendmybook;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.lendmybook.dagorik.lendmybook.models.BookArray;
 
 import java.util.List;
@@ -21,17 +23,16 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> 
     private List<BookArray> bookArrayList;
     private Context context;
 
-
     public BooksAdapter(List<BookArray> bookArrayList) {
+        Log.i("myLog","jaja");
         this.bookArrayList = bookArrayList;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        context=parent.getContext();
-        View view = LayoutInflater.from(context).inflate(R.layout.item_books,parent,false);
-        ViewHolder viewHolder= new ViewHolder(view);
-
+        context = parent.getContext();
+        View view = LayoutInflater.from(context).inflate(R.layout.item_books, parent, false);
+        ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
 
@@ -39,6 +40,7 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> 
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         BookArray bookArray = bookArrayList.get(position);
+        Log.e("MyLogView", "Holi estoy dentro del ");
         holder.bindTrack(bookArray);
 
     }
@@ -48,26 +50,33 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> 
         return bookArrayList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView imgBooks;
 
         public ViewHolder(View itemView) {
+
             super(itemView);
 
             imgBooks = (ImageView) itemView.findViewById(R.id.img_book);
+            Log.e("MyLogView", "Holi estoy dentro del ViewHolder");
 
         }
 
-        public void bindTrack(final BookArray bookArray){
 
-//            imgBooks.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//
-//                    //Toast.makeText(contexto, "LE DISTE CLICK A ESTE LIBRO", Toast.LENGTH_SHORT).show();
-//                }
-//            });
+        public void bindTrack(final BookArray bookArray) {
+
+            String imgUrl = bookArray.getImageUrl();
+            Log.e("MyLogBind", "Holi estoy dentro del bindTrack");
+            Glide.with(context).load(imgUrl).into(imgBooks);
+
+            imgBooks.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Toast.makeText(context, "LE DISTE CLICK A ESTE LIBRO: " + bookArray.getTitle().toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
 
 
         }

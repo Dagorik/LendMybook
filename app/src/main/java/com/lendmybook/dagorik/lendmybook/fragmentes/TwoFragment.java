@@ -12,10 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.lendmybook.dagorik.lendmybook.BooksAdapter;
 import com.lendmybook.dagorik.lendmybook.R;
 import com.lendmybook.dagorik.lendmybook.interfaces.LendMyBookServices;
 import com.lendmybook.dagorik.lendmybook.models.BookArray;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,9 +37,8 @@ public class TwoFragment extends Fragment implements View.OnClickListener {
     private RecyclerView recyclerViewBooks;
     private View view;
     private BooksAdapter booksAdapter;
-    private List<BookArray> booksAdapterslist = new ArrayList<>();
+    private List<BookArray> booksAdapterslist;
 
-    private String listString;
 
     public TwoFragment() {
         // Required empty public constructor
@@ -53,18 +56,18 @@ public class TwoFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_two, container, false);
         floatingActionButton = (FloatingActionButton) view.findViewById(R.id.fab);
-
+        booksAdapterslist = new ArrayList<>();
         floatingActionButton.setOnClickListener(this);
 
         //Agregando datos a la lista libros
-        booksAdapterslist.add(new BookArray());
-        booksAdapterslist.add(new BookArray());
-        booksAdapterslist.add(new BookArray());
-        booksAdapterslist.add(new BookArray());
-        booksAdapterslist.add(new BookArray());
-        booksAdapterslist.add(new BookArray());
-        booksAdapterslist.add(new BookArray());
-        booksAdapterslist.add(new BookArray());
+//        booksAdapterslist.add(new BookArray());
+//        booksAdapterslist.add(new BookArray());
+//        booksAdapterslist.add(new BookArray());
+//        booksAdapterslist.add(new BookArray());
+//        booksAdapterslist.add(new BookArray());
+//        booksAdapterslist.add(new BookArray());
+//        booksAdapterslist.add(new BookArray());
+//        booksAdapterslist.add(new BookArray());
 
         //Configurando el reciclerView
         recyclerViewBooks = (RecyclerView) view.findViewById(R.id.recycler_books);
@@ -73,8 +76,6 @@ public class TwoFragment extends Fragment implements View.OnClickListener {
         recyclerViewBooks.setHasFixedSize(true);
 
         //Inicializando el adaptador de Books,
-        booksAdapter = new BooksAdapter(booksAdapterslist);
-        recyclerViewBooks.setAdapter(booksAdapter);
 
         //Cargando el metodo para obetener todas las portadas de los libros
         loadAllBooks();
@@ -85,22 +86,14 @@ public class TwoFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        Log.i("PruebaLogOnCLick", "Holi entre al on click");
+        Log.i("MylogC", "Holi entre al on click");
 
         switch (view.getId()) {
 
             case R.id.fab:
 
-                Log.i("PruebaDEntrolButton!", "Holi entre al Floating");
+                Log.i("MylogF!", "Holi entre al Floating");
 
-//                Toast.makeText(getActivity(), "PUCHADO!", Toast.LENGTH_LONG).show();
-
-//                FloatingFragment floatingFragment = FloatingFragment.newInstance();
-//                FragmentTransaction trans = getFragmentManager().beginTransaction();
-//
-//                trans.replace(R.id.fab, floatingFragment);
-//
-//                trans.commit();
                 showDialog();
 
                 break;
@@ -133,26 +126,40 @@ public class TwoFragment extends Fragment implements View.OnClickListener {
 
         final LendMyBookServices client = retrofit.create(LendMyBookServices.class);
 
-        client.getAllBooks().enqueue(new Callback<BookArray>() {
+        client.getAllBooks().enqueue(new Callback<List<BookArray>>() {
             @Override
-            public void onResponse(Call<BookArray> call, Response<BookArray> response) {
+            public void onResponse(Call<List<BookArray>> call, Response<List<BookArray>> response) {
 
-                String nameBook = response.body().getTitle();
-                List<BookArray> lista = (List<BookArray>) response.body().getListaBook().get(0);
-                listString = lista.toString();
+                Log.i("MyLogR", response.body().get(0).getTitle().toString());
+                Log.i("MyLogImg", response.body().get(0).getImageUrl().toString());
+                Log.e("La Lista es :", "" + response.body().get(0).toString());
 
 
-                Log.i("MylogFuntion", nameBook);
-                Log.i("MylogFuntion2", listString);
+                booksAdapterslist = response.body();
+                int lista = booksAdapterslist.size();
 
+                Log.e("LISTA= ", "" + lista);
+
+                settingRecyclerView();
+
+                booksAdapterslist.add(response.body().get(0));
+                booksAdapter.notifyDataSetChanged();
 
             }
 
             @Override
-            public void onFailure(Call<BookArray> call, Throwable t) {
-                Log.i("myLog", t.getMessage());
+            public void onFailure(Call<List<BookArray>> call, Throwable t) {
+                Log.d("MyLogError", t.getMessage());
             }
         });
+
+    }
+
+    public void settingRecyclerView() {
+        recyclerViewBooks.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        recyclerViewBooks.setHasFixedSize(true);
+        booksAdapter = new BooksAdapter(booksAdapterslist);
+        recyclerViewBooks.setAdapter(booksAdapter);
 
     }
 

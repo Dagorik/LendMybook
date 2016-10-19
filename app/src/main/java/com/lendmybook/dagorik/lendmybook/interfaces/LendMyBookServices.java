@@ -2,6 +2,8 @@ package com.lendmybook.dagorik.lendmybook.interfaces;
 
 import com.lendmybook.dagorik.lendmybook.models.BookArray;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -13,6 +15,6 @@ import retrofit2.http.Path;
 public interface LendMyBookServices  {
 
     @GET ("/api/basebooks/showallbasebooks")
-    Call<BookArray> getAllBooks();
+    Call<List<BookArray>> getAllBooks();
 
 }
