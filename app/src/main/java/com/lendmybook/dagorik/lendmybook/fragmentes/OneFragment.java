@@ -19,10 +19,10 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class OneFragment extends Fragment {
 
-    private String urlPerfil, namePerfil, email,id_Face;
+    private String urlPerfil, namePerfil, email, id_Face;
 
     private ImageView picturePerfil;
-    private TextView name;
+    private TextView name, mails, descripcion;
 
     public OneFragment() {
         // Required empty public constructor
@@ -42,7 +42,7 @@ public class OneFragment extends Fragment {
 
         picturePerfil = (ImageView) myView.findViewById(R.id.picture_profile);
         name = (TextView) myView.findViewById(R.id.tv_name_perfil);
-
+        mails = (TextView) myView.findViewById(R.id.tv_email);
         loadShare();
         setData();
         return myView;
@@ -58,15 +58,14 @@ public class OneFragment extends Fragment {
         id_Face = preferences.getString("id_face", null);
 
 
-        Log.e("mail", email);
         Log.e("idface", id_Face);
-
 
     }
 
     public void setData() {
 
         name.setText(namePerfil);
+        mails.setText(email);
         Glide.with(getApplicationContext()).load(urlPerfil).into(picturePerfil);
 
     }

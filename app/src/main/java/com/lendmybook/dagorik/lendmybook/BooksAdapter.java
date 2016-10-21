@@ -64,15 +64,16 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> 
             super(itemView);
 
             imgBooks = (ImageView) itemView.findViewById(R.id.img_book);
-            Log.e("MyLogView", "Holi estoy dentro del ViewHolder");
 
         }
 
 
         public void bindTrack(final BookArray bookArray) {
 
+            //Obteniendo la ulr del libro para mostrarla
             String imgUrl = bookArray.getImageUrl();
             Log.e("MyLogBind", "Holi estoy dentro del bindTrack");
+            //Pintando las pottadas de los libros.
             Glide.with(context).load(imgUrl).into(imgBooks);
 
             imgBooks.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +86,6 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> 
                     //Guardando los datos en un shared para pasarlos a LibroActivity
                     SharedPreferences preferences = context.getSharedPreferences("DatosJson", MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
-
                     editor.putString("img_url", bookArray.getImageUrl());
                     editor.putString("descripcion", bookArray.getDescription());
                     editor.putString("autor", bookArray.getAuthor());
@@ -93,7 +93,7 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> 
 
                     editor.commit();
 
-
+                    //Cambiando de actividad cuando le des click a cada libro
                     Intent intent = new Intent(context, LibroActivity.class);
 
                     context.startActivity(intent);

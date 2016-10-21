@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 
 public class LibroActivity extends AppCompatActivity {
 
+    //Inicializando
     private String urlImagen = "ÑO", titulo_libro = "ÑO", descrpcion_libr = "ÑO", author_libro = "ÑO";
 
     private ImageView portada;
@@ -24,6 +25,7 @@ public class LibroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_libro2);
 
+        //Referenciando con la vista
         portada = (ImageView) findViewById(R.id.portadas);
         title = (TextView) findViewById(R.id.titulos);
         author = (TextView) findViewById(R.id.autors);
@@ -59,3 +61,4 @@ public class LibroActivity extends AppCompatActivity {
     }
 
 }
+

@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     private CallbackManager callbackManager;
     private ImageView imagenPerfil;
     private String url;
-    private String nameJson, emailJson ,id_Face;
+    private String nameJson, emailJson, id_Face;
     private String profileGrande;
 
 
@@ -70,7 +70,6 @@ public class LoginActivity extends AppCompatActivity {
                             Profile profile = Profile.getCurrentProfile();
                             profileGrande = profile.getProfilePictureUri(300, 300).toString();
                             id_Face = profile.getId();
-
 
 
                             SharedPreferences preferences = getSharedPreferences("sesion", getApplicationContext().MODE_PRIVATE);
