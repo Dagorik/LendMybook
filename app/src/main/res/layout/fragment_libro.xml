@@ -1,0 +1,38 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.lendmybook.dagorik.lendmybook.fragmentes.LibroFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/portada"
+            android:layout_width="200dp"
+            android:layout_height="260dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="1dp">
+
+            <TextView
+                android:id="@+id/titulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ttulo"
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/autor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="autor" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>

@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     private CallbackManager callbackManager;
     private ImageView imagenPerfil;
     private String url;
-    private String nameJson;
+    private String nameJson, emailJson ,id_Face;
     private String profileGrande;
 
 
@@ -62,11 +62,15 @@ public class LoginActivity extends AppCompatActivity {
                             url = data.getString("url");
                             JSONObject name = object;
                             nameJson = name.getString("name");
+                            emailJson = name.getString("email");
+
                             Log.e("myLog", url);
                             Log.e("MylogName", nameJson);
 
                             Profile profile = Profile.getCurrentProfile();
                             profileGrande = profile.getProfilePictureUri(300, 300).toString();
+                            id_Face = profile.getId();
+
 
 
                             SharedPreferences preferences = getSharedPreferences("sesion", getApplicationContext().MODE_PRIVATE);
@@ -74,6 +78,8 @@ public class LoginActivity extends AppCompatActivity {
                             editor.putString("img_perfil", url);
                             editor.putString("img_perfilG", profileGrande);
                             editor.putString("name_face", nameJson);
+                            editor.putString("email", emailJson);
+                            editor.putString("id_face", id_Face);
                             editor.commit();
 
 

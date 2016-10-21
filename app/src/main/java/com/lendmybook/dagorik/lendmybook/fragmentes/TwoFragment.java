@@ -1,6 +1,8 @@
 package com.lendmybook.dagorik.lendmybook.fragmentes;
 
 import android.app.FragmentManager;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -30,6 +32,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static android.content.Context.MODE_PRIVATE;
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 
 public class TwoFragment extends Fragment implements View.OnClickListener {
 
@@ -38,6 +43,7 @@ public class TwoFragment extends Fragment implements View.OnClickListener {
     private View view;
     private BooksAdapter booksAdapter;
     private List<BookArray> booksAdapterslist;
+    private int i;
 
 
     public TwoFragment() {
@@ -79,6 +85,7 @@ public class TwoFragment extends Fragment implements View.OnClickListener {
 
         //Cargando el metodo para obetener todas las portadas de los libros
         loadAllBooks();
+
 
         return view;
     }
@@ -140,10 +147,18 @@ public class TwoFragment extends Fragment implements View.OnClickListener {
 
                 Log.e("LISTA= ", "" + lista);
 
-                settingRecyclerView();
 
-                booksAdapterslist.add(response.body().get(0));
-                booksAdapter.notifyDataSetChanged();
+
+                    settingRecyclerView();
+
+                    booksAdapter.notifyDataSetChanged();
+
+
+
+
+
+
+//                /Log.i("MyLogSha", id);
 
             }
 

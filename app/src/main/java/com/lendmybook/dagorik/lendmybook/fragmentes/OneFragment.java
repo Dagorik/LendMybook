@@ -19,7 +19,7 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class OneFragment extends Fragment {
 
-    private String urlPerfil, namePerfil;
+    private String urlPerfil, namePerfil, email,id_Face;
 
     private ImageView picturePerfil;
     private TextView name;
@@ -41,7 +41,7 @@ public class OneFragment extends Fragment {
         View myView = inflater.inflate(R.layout.fragment_one, container, false);
 
         picturePerfil = (ImageView) myView.findViewById(R.id.picture_profile);
-        name= (TextView) myView.findViewById(R.id.tv_name_perfil);
+        name = (TextView) myView.findViewById(R.id.tv_name_perfil);
 
         loadShare();
         setData();
@@ -54,15 +54,17 @@ public class OneFragment extends Fragment {
         SharedPreferences preferences = getActivity().getSharedPreferences("sesion", getApplicationContext().MODE_PRIVATE);
         urlPerfil = preferences.getString("img_perfilG", null);
         namePerfil = preferences.getString("name_face", null);
+        email = preferences.getString("email", null);
+        id_Face = preferences.getString("id_face", null);
 
-//        Log.e("FragmentPerfil", urlPerfil);
-//        Log.e("FragmentName", namePerfil);
 
+        Log.e("mail", email);
+        Log.e("idface", id_Face);
 
 
     }
 
-    public void setData(){
+    public void setData() {
 
         name.setText(namePerfil);
         Glide.with(getApplicationContext()).load(urlPerfil).into(picturePerfil);
